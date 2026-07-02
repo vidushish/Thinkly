@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Auth.css";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-
+import logo from "../assets/thinkly-logo.png";
 
 function Auth() {
 	const API_URL = import.meta.env.VITE_API_URL;
@@ -72,7 +72,13 @@ function Auth() {
 			/>
 			<div className="authPage">
 				<div className="authCard">
-					<h1>Thinkly</h1>
+					<div className="authLogo">
+						<h1>Thinkly</h1>
+						<img
+							src={logo}
+							alt="Thinkly Logo"
+						/>
+					</div>
 					<p>{isLogin ? "Welcome back" : "Create your account"}</p>
 
 					<form onSubmit={handleSubmit}>

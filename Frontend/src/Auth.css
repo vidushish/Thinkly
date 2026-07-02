@@ -9,10 +9,10 @@
 }
 
 .authCard {
-	width: 420px;
+	width: 360px;
 	background: #171717;
 
-	padding: 40px;
+	padding: 30px;
 
 	border-radius: 20px;
 
@@ -26,7 +26,7 @@
 .authCard h1 {
 	color: white;
 	margin-bottom: 10px;
-	font-size: 38px;
+	font-size: 32px;
 }
 
 .authCard p {
@@ -48,7 +48,7 @@
 
 	color: white;
 
-	padding: 15px;
+	padding: 12px;
 
 	border-radius: 12px;
 
@@ -61,7 +61,7 @@
 
 	border: none;
 
-	padding: 15px;
+	padding: 12px;
 
 	border-radius: 12px;
 
@@ -85,4 +85,17 @@
 
 .switchAuth:hover {
 	color: white;
+}
+
+.authLogo {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 10px;
+}
+
+.authLogo img {
+	width: 45px;
+	height: 45px;
+	object-fit: contain;
 }
