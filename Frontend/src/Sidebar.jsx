@@ -4,6 +4,7 @@ import { MyContext } from "./MyContext.jsx";
 import { v1 as uuidv1 } from "uuid";
 
 function Sidebar() {
+	const API_URL = import.meta.env.VITE_API_URL;
 	const {
 		allThreads,
 		setAllThreads,
@@ -17,7 +18,7 @@ function Sidebar() {
 
 	const getAllThreads = async () => {
 		try {
-			const response = await fetch("http://localhost:8080/api/thread", {
+			const response = await fetch(`${API_URL}/api/thread`, {
 				headers: {
 					Authorization: localStorage.getItem("token"),
 				},
@@ -50,7 +51,7 @@ function Sidebar() {
 
 		try {
 			const response = await fetch(
-				`http://localhost:8080/api/thread/${newThreadId}`,
+				`${API_URL}/api/thread/${newThreadId}`,
 				{
 					headers: {
 						Authorization: localStorage.getItem("token"),
@@ -69,7 +70,7 @@ function Sidebar() {
 	const deleteThread = async (threadId) => {
 		try {
 			const response = await fetch(
-				`http://localhost:8080/api/thread/${threadId}`,
+				`${API_URL}/api/thread/${threadId}`,
 				{
 					method: "DELETE",
 					headers: {

@@ -3,7 +3,9 @@ import "./Auth.css";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
+
 function Auth() {
+	const API_URL = import.meta.env.VITE_API_URL;
 	const [isLogin, setIsLogin] = useState(true);
 
 	const [name, setName] = useState("");
@@ -14,8 +16,8 @@ function Auth() {
 		e.preventDefault();
 
 		const url = isLogin
-			? "http://localhost:8080/api/auth/login"
-			: "http://localhost:8080/api/auth/signup";
+			? `${API_URL}/api/auth/login`
+			: `${API_URL}/api/auth/signup`;
 
 		const body = isLogin ? { email, password } : { name, email, password };
 

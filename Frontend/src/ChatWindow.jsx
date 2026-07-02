@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
 
 function ChatWindow() {
+	const API_URL = import.meta.env.VITE_API_URL;
 	const {
 		prompt,
 		setPrompt,
@@ -34,7 +35,7 @@ function ChatWindow() {
 		};
 		try {
 			const response = await fetch(
-				"http://localhost:8080/api/chat",
+				`${API_URL}/api/chat`,
 				options,
 			);
 			const res = await response.json();
