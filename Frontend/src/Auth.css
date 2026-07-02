@@ -90,8 +90,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 15px;
-	margin-bottom: 15px;
+	gap: 5px;
+	margin-bottom: 8px;
 }
 
 .authLogo h1 {
