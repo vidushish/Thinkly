@@ -1,6 +1,7 @@
 import "dotenv/config";
 
 const getGeminiResponse = async (message) => {
+	console.log("API KEY =", process.env.Thinkly_key);
 	const options = {
 		method: "POST",
 		headers: {
