@@ -91,7 +91,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 10px;
 	width: 100%;
 }
 
@@ -99,7 +98,7 @@
 	width: 65px;
 	height: 65px;
 	object-fit: contain;
-	transform: translateY(0);
+	margin-left: -12px;
 }
 
 .authLogo h1 {
