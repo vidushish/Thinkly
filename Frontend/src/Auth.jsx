@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Auth.css";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import logo from "../assets/thinkly-logo.png";
+import logo from "../src/assets/Thinklylogo.png";
 
 function Auth() {
 	const API_URL = import.meta.env.VITE_API_URL;
