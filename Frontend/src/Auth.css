@@ -89,13 +89,24 @@
 
 .authLogo {
 	display: flex;
+	justify-content: center;
 	align-items: center;
-	gap: 12px;
+	gap: 8px;
 	margin-bottom: 10px;
 }
 
+.authLogo h1 {
+	margin: 0;
+}
+
 .authLogo img {
-	width: 45px;
-	height: 45px;
+	width: 28px;
+	height: 28px;
 	object-fit: contain;
+}
+
+.authCard input,
+.authCard button {
+	width: 100%;
+	box-sizing: border-box;
 }
