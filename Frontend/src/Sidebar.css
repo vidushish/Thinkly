@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
-button{
+.sidebar button {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,10 +18,10 @@ button{
     border:solid 0.5px rgba(255,255,255,0.5);
     cursor: pointer;
 }
-button span{
+.sidebar button span{
     font-size: 20px;
 }
-button:hover{
+.sidebar button:hover{
     background-color:rgba(200,200,200,0.05) ;
 }
 .history{
@@ -71,4 +71,53 @@ button:hover{
 .highlighted{
     background-color: rgba(180,180,180,0.05);
     border-radius: 10px;
+}
+.menu-btn {
+	display: none;
+}
+
+@media (max-width: 768px) {
+	.menu-btn {
+		display: block;
+		position: fixed;
+		top: 10px;
+		left: 10px;
+
+		z-index: 1001;
+
+		background: #171717;
+		color: white;
+
+		border: none;
+
+		padding: 10px 15px;
+		border-radius: 10px;
+
+		font-size: 22px;
+	}
+
+	.sidebar {
+	position: fixed;
+	top: 0;
+	left: -320px;
+	width: 320px;
+	height: 100vh;
+
+	z-index: 1002;
+
+	transition: left 0.3s ease;
+}
+
+	.sidebar.open {
+		left: 0;
+	}
+
+	.overlay {
+		position: fixed;
+		inset: 0;
+
+		background: rgba(0, 0, 0, 0.5);
+
+		z-index: 1000;
+	}
 }

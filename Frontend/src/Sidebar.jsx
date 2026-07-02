@@ -4,6 +4,7 @@ import { MyContext } from "./MyContext.jsx";
 import { v1 as uuidv1 } from "uuid";
 
 function Sidebar() {
+	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const API_URL = import.meta.env.VITE_API_URL;
 	const {
 		allThreads,
@@ -44,11 +45,16 @@ function Sidebar() {
 		setReply(null);
 		setCurrThreadId(uuidv1());
 		setPrevChats([]);
+		if (window.innerWidth <= 768) {
+			setSidebarOpen(false);
+		}
 	};
 
 	const changeThread = async (newThreadId) => {
 		setCurrThreadId(newThreadId);
-
+		if (window.innerWidth <= 768) {
+			setSidebarOpen(false);
+		}
 		try {
 			const response = await fetch(
 				`${API_URL}/api/thread/${newThreadId}`,
@@ -69,15 +75,12 @@ function Sidebar() {
 
 	const deleteThread = async (threadId) => {
 		try {
-			const response = await fetch(
-				`${API_URL}/api/thread/${threadId}`,
-				{
-					method: "DELETE",
-					headers: {
-						Authorization: localStorage.getItem("token"),
-					},
+			const response = await fetch(`${API_URL}/api/thread/${threadId}`, {
+				method: "DELETE",
+				headers: {
+					Authorization: localStorage.getItem("token"),
 				},
-			);
+			});
 			const res = await response.json();
 			setAllThreads((prev) =>
 				prev.filter((thread) => thread.threadId !== threadId),
@@ -92,43 +95,59 @@ function Sidebar() {
 	};
 
 	return (
-		<section className="sidebar">
-			<button onClick={createNewChat}>
-				<span>
-					<i className="fa-brands fa-openai"></i>
-				</span>
-				<span>
-					<i className="fa-regular fa-pen-to-square"></i>
-				</span>
+		<>
+			<button
+				className="menu-btn"
+				onClick={() => setSidebarOpen(true)}
+			>
+				☰
 			</button>
 
-			<ul className="history">
-				{allThreads?.map((thread, idx) => (
-					<li
-						key={idx}
-						onClick={(e) => changeThread(thread.threadId)}
-						className={
-							thread.threadId === currThreadId
-								? "highlighted"
-								: " "
-						}
-					>
-						{thread.title}
-						<i
-							className="fa-regular fa-trash-can"
-							onClick={(e) => {
-								e.stopPropagation();
-								deleteThread(thread.threadId);
-							}}
-						></i>
-					</li>
-				))}
-			</ul>
+			{sidebarOpen && (
+				<div
+					className="overlay"
+					onClick={() => setSidebarOpen(false)}
+				></div>
+			)}
 
-			<div className="sign">
-				<p>By Vidushi Sharma &hearts;</p>
-			</div>
-		</section>
+			<section className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+				<button onClick={createNewChat}>
+					<span>
+						<i className="fa-brands fa-openai"></i>
+					</span>
+					<span>
+						<i className="fa-regular fa-pen-to-square"></i>
+					</span>
+				</button>
+
+				<ul className="history">
+					{allThreads?.map((thread, idx) => (
+						<li
+							key={idx}
+							onClick={(e) => changeThread(thread.threadId)}
+							className={
+								thread.threadId === currThreadId
+									? "highlighted"
+									: " "
+							}
+						>
+							{thread.title}
+							<i
+								className="fa-regular fa-trash-can"
+								onClick={(e) => {
+									e.stopPropagation();
+									deleteThread(thread.threadId);
+								}}
+							></i>
+						</li>
+					))}
+				</ul>
+
+				<div className="sign">
+					<p>By Vidushi Sharma &hearts;</p>
+				</div>
+			</section>
+		</>
 	);
 }
 
