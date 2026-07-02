@@ -1,12 +1,11 @@
 import "dotenv/config";
 
 const getGeminiResponse = async (message) => {
-	console.log("API KEY =", process.env.Thinkly_key);
 	const options = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: `Bearer ${process.env.Thinkly_key}`,
+			Authorization: `Bearer ${process.env.Thinkly_Key}`,
 		},
 		body: JSON.stringify({
 			model: "gemini-3.5-flash",
